@@ -6,10 +6,11 @@ use Cake\ORM\Entity;
 
 class User extends Entity
 {
+	// array for what can be updated
 	protected $_accessible = [
 			'*' => true,
 			'id' => false,
-			'slug' => false,
+			'email' => false,
 	];
 }
 ?>
