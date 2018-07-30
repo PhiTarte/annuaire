@@ -13,7 +13,7 @@ class UsersController extends AppController
 	}
 	public function view($email = null)
 	{
-		$article = $this->Users->findBySlug($email)->firstOrFail();
+		$article = $this->Users->findByEmail($email)->firstOrFail();
 		$this->set(compact('user'));
 	}
 	public function add()
@@ -32,6 +32,20 @@ class UsersController extends AppController
 			}
 			$this->Flash->error(__("Your user can't be added"));
 		}
+		$this->set('user', $user);
+	}
+	public function edit($email)
+	{
+		$article = $this->Users->findByEmail($email)->firstOrFail();
+		if ($this->request->is(['post', 'put'])) {
+			$this->Users->patchEntity($user, $this->request->getData());
+			if ($this->Users->save($user)) {
+				$this->Flash->success(__('Your user is updated.'));
+				return $this->redirect(['action' => 'index']);
+			}
+			$this->Flash->error(__('User can\'t be updated.'));
+		}
+		
 		$this->set('user', $user);
 	}
 }

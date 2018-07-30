@@ -1,9 +1,11 @@
 <!-- Fichier : src/Template/Users/index.ctp -->
 
 <h1>Users</h1>
+<?= $this->Html->link('Add a user', ['action' => 'add']) ?>
 <table>
     <tr>
         <th>lastName firstName</th>
+        <th>Tel</th>
         <th>email</th>
     </tr>
 
@@ -12,10 +14,17 @@
     <?php foreach ($users as $user): ?>
     <tr>
         <td>
-            <?= $this->Html->link($user->lastName, ['action' => 'view', $user->firstName]) ?>
+            <?= $this->Html->link($user->lastName, ['action' => 'view', $user->lastName]) ?>
+            &nbsp;<?= $user->firstName ?>
+        </td>
+        <td>
+            <?= $user->tel ?>
         </td>
         <td>
             <?= $user->email ?>
+        </td>
+        <td>
+            <?= $this->Html->link('Modify', ['action' => 'edit', $article->email]) ?>
         </td>
     </tr>
     <?php endforeach; ?>
