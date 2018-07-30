@@ -24,7 +24,14 @@
             <?= $user->email ?>
         </td>
         <td>
-            <?= $this->Html->link('Modify', ['action' => 'edit', $article->email]) ?>
+            <?= $this->Html->link('Modify', ['action' => 'edit', $user->email]) ?>
+        </td>
+        <td>
+        <?= $this->Form->postLink(
+                'Supress',
+                ['action' => 'delete', $user->email],
+                ['confirm' => 'Are you sure ?'])
+            ?>
         </td>
     </tr>
     <?php endforeach; ?>
